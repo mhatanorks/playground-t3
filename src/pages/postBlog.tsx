@@ -8,7 +8,7 @@ const postBlog = () => {
   const router = useRouter();
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
-  
+
   console.log(titleRef.current?.value);
   console.log(descriptionRef.current?.value);
 
@@ -77,6 +77,7 @@ const postBlog = () => {
             >
               キャンセル
             </Link>
+            {postBlog.isLoading ? "送信中" : "こんにちは"}
           </div>
         </form>
       </div>

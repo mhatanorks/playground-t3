@@ -8,8 +8,12 @@ import { api } from "~/utils/api";
 
 export default function Home() {
 
-  const allBlogs = api.post.getAllBlogs.useQuery();
-  console.log(allBlogs.data);
+  const {isLoading, data} = api.post.getAllBlogs.useQuery();
+  if (isLoading) {
+    return <span>Loading...</span>
+  }
+
+  console.log(data);
   return (
     <>
       <Head>
@@ -23,7 +27,7 @@ export default function Home() {
             Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
           </h1>
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {allBlogs.data?.map((blog) => (
+            {data?.map((blog) => (
               <Link
                 href={`/blog/${blog.id}`}
                 key={blog.id}
